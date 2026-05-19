@@ -15,7 +15,7 @@
     --success-color: #15803d;    /* Verde Corporativo para Botón Excel */
     --danger-color: #b91c1c;     /* Rojo Alerta */
     --border-color: #cbd5e1;
-    --radius: 8px;
+    --radius: 4px;
     --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
     --transition: all 0.25s ease-in-out;
 }
@@ -46,27 +46,29 @@ body {
 }
 
 /* ==========================================================================
-   HEADER CORPORATIVO Y LOGO
+   HEADER CORPORATIVO Y LOGO (Optimizado para visualización institucional)
    ========================================================================== */
 header {
     background-color: var(--primary-color);
     color: #ffffff;
-    padding: 2.5rem 1rem;
+    padding: 2rem 1rem; 
     text-align: center;
     border-bottom: 5px solid var(--accent-color);
     box-shadow: var(--shadow);
 }
 
 .logo-container {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 60px; /* Restringe la altura máxima del área del logo */
 }
 
 .uniminuto-logo {
-    width: 130px;
-    height: auto;
+    height: 100%; /* El logo se adapta perfectamente a la altura del contenedor */
+    width: auto;  /* Mantiene la proporción geométrica exacta sin deformarse */
+    max-width: 100%;
 }
 
 header h1 {
