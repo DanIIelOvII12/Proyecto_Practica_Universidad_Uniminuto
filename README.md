@@ -1,7 +1,7 @@
 # Proyecto de Práctica Profesional: Sistema de Gestión de Laboratorios Tecnológicos y Niñeras de Cómputo
 
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Logo_Uniminuto.svg" alt="Logo UNIMINUTO" width="220">
+  <img src="https://images.seeklogo.com/logo-png/22/1/uniminuto-logo-png_seeklogo-221225.png" alt="Logo UNIMINUTO" width="220">
 </p>
 
 ## Descripción del Proyecto
@@ -47,12 +47,12 @@ La plataforma está construida bajo un enfoque ágil, priorizando el rendimiento
 ---
 
 ## Estructura Organizacional y Roles
-El proyecto interactúa y reporta directamente a la jerarquía técnica de los laboratorios:
+El proyecto esta enfocado principalmente para la optimizacion de funciones dentro de la Corporacion Universitaria Minuto de Dios en base a mis jefes de area:
 * Dirección de Laboratorios: Elizabeth Villalobos (Jefa de Laboratorios).
 * Responsables Técnicos: 
   * Jaider Rodríguez (Responsable Jornada Día).
   * Hugo Palacio (Responsable Jornada Noche).
-* Desarrollador / Practicante: David Yate (Análisis y Desarrollo de Software - ADSO).
+* Desarrollador / Practicante: Daniel Alexander Oviedo Valencia (Tecnologia en Informatica).
 
 ---
 
