@@ -46,47 +46,43 @@ body {
 }
 
 /* ==========================================================================
-   HEADER CORPORATIVO Y LOGO (Reducción Máxima Ultra-Compacta)
-   ========================================================================== */
-/* ==========================================================================
-   HEADER CORPORATIVO Y LOGO (Equilibrio Visual e Institucional)
+   HEADER CORPORATIVO Y LOGO (Proporción y Visibilidad Óptima)
    ========================================================================== */
 header {
     background-color: var(--primary-color);
     color: #ffffff;
-    padding: 1.8rem 1rem; /* Margen ideal para dar aire sin saturar */
+    padding: 1.5rem 1rem; /* Ajuste de aire intermedio */
     text-align: center;
     border-bottom: 5px solid var(--accent-color);
     box-shadow: var(--shadow);
 }
 
 .logo-container {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.6rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45px; /* Proporción ideal: ni gigante como al inicio, ni invisible */
+    height: 38px; /* Altura equilibrada para garantizar legibilidad */
 }
 
 .uniminuto-logo {
-    height: 100%; /* Se ajusta de forma limpia al contenedor de 45px */
-    width: auto;  /* Conserva la geometría y proporciones exactas */
+    height: 100%; /* Se adapta perfectamente a la nueva escala de 38px */
+    width: auto;  /* Mantiene la proporción geométrica original */
     max-width: 100%;
 }
 
 header h1 {
-    font-size: 1.6rem; /* Tamaño intermedio y serio para el título principal */
+    font-size: 1.5rem; /* Tamaño de tipografía acorde al peso visual del logo */
     font-weight: 700;
     letter-spacing: 0.5px;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.25rem;
 }
 
 header .subtitle {
     color: #94a3b8;
-    font-size: 0.95rem; /* Subtítulo legible y balanceado */
+    font-size: 0.9rem; /* Subtítulo estilizado */
     font-weight: 400;
 }
-
 /* ==========================================================================
    TARJETAS COMPONENTES
    ========================================================================== */
