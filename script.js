@@ -56,8 +56,8 @@ function renderTable() {
         tr.innerHTML = `
             <td>${record.date}</td>
             <td><strong>${record.serial}</strong></td>
-            <td><span class="badge">${record.type}</span></td>
-            <td>${record.observations || '<em>Sin observaciones</em>'}</td>
+            <td>${record.type}</td>
+            <td>${record.observations || 'Sin observaciones'}</td>
             <td class="text-center">
                 <button class="btn-delete" onclick="deleteRecord(${index})">Eliminar</button>
             </td>
@@ -84,7 +84,7 @@ function handleFormSubmit(e) {
         second: '2-digit' 
     });
 
-    // Crear el objeto del nuevo registro con los requerimientos solicitados
+    // Crear el objeto del nuevo registro
     const newRecord = {
         date: formattedDate,
         serial: serialNumberInput.value.trim().toUpperCase(),
@@ -105,7 +105,7 @@ function handleFormSubmit(e) {
 // FUNCIÓN: ELIMINAR UN REGISTRO ESPECÍFICO
 // ==========================================================================
 window.deleteRecord = function(index) {
-    if (confirm('¿Estás seguro de que deseas eliminar este registro de la sesión?')) {
+    if (confirm('¿Está seguro de que desea eliminar este registro de la sesión?')) {
         maintenanceRecords.splice(index, 1);
         localStorage.setItem('uniminuto_records', JSON.stringify(maintenanceRecords));
         renderTable();
@@ -116,7 +116,7 @@ window.deleteRecord = function(index) {
 // FUNCIÓN: LIMPIAR TODO EL HISTORIAL
 // ==========================================================================
 function clearAllRecords() {
-    if (confirm('⚠ ATENCIÓN: Se borrarán todos los registros digitados en este navegador. ¿Deseas continuar?')) {
+    if (confirm('ATENCION: Se borrarán de forma definitiva todos los registros digitados en este equipo. ¿Desea continuar?')) {
         maintenanceRecords = [];
         localStorage.removeItem('uniminuto_records');
         renderTable();
@@ -124,36 +124,36 @@ function clearAllRecords() {
 }
 
 // ==========================================================================
-// FUNCIÓN CRÍTICA: COMPILAR Y EXPORTAR A EXCEL (FRONTEND REAL)
+// FUNCIÓN: COMPILAR Y EXPORTAR A EXCEL (SHEETJS)
 // ==========================================================================
 function exportToExcel() {
     if (maintenanceRecords.length === 0) return;
 
-    // 1. Mapear los datos JSON internos a columnas y títulos limpios para el Excel corporativo
+    // Mapear los datos JSON internos a columnas y títulos limpios
     const excelData = maintenanceRecords.map(record => ({
         'FECHA Y HORA REGISTRO': record.date,
-        'NÚMERO DE SERIAL / ID': record.serial,
-        'TIPO / ÁREA DE EQUIPO': record.type,
+        'NUMERO DE SERIAL / ID': record.serial,
+        'TIPO / AREA DE EQUIPO': record.type,
         'OBSERVACIONES DE MANTENIMIENTO': record.observations || 'N/A'
     }));
 
-    // 2. Crear un libro de trabajo (Workbook) y una hoja de cálculo (Worksheet) vacíos mediante SheetJS
+    // Crear libro de trabajo y hoja de cálculo
     const workbook = XLSX.utils.book_new();
     const worksheet = XLSX.utils.json_to_sheet(excelData);
 
-    // Configurar anchos automáticos o recomendados para las columnas del Excel
+    // Ajustar anchos automáticos recomendados
     const columnWidths = [
         { wch: 22 }, // Fecha y Hora
         { wch: 25 }, // Serial
-        { wch: 20 }, // Tipo/Área
-        { wch: 45 }  // Observaciones
+        { wch: 25 }, // Tipo/Área
+        { wch: 50 }  // Observaciones
     ];
     worksheet['!cols'] = columnWidths;
 
-    // 3. Añadir la hoja con los datos organizados al libro creado
+    // Añadir hoja al libro
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Mantenimientos Lab');
 
-    // 4. Generar el archivo binario y forzar de inmediato la descarga en el navegador del usuario
+    // Generar archivo binario y forzar descarga
     const dateStamp = new Date().toISOString().slice(0,10);
     XLSX.writeFile(workbook, `Reporte_Mantenimiento_Laboratorios_${dateStamp}.xlsx`);
 }

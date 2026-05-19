@@ -1,19 +1,23 @@
 /* ==========================================================================
-   VARIABLES DE DISEÑO (Colores y Estilos Globales)
+   VARIABLES DE DISEÑO - PALETA INSTITUCIONAL UNIMINUTO
    ========================================================================== */
 :root {
-    --bg-main: #f4f6f9;
+    --bg-main: #f1f5f9;
     --bg-card: #ffffff;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --primary-color: #0c2340; /* Azul Institucional Oscuro */
-    --accent-color: #eaaa00;  /* Dorado Sutil */
-    --success-color: #10b981; /* Verde Esmeralda para Excel */
-    --danger-color: #ef4444;  /* Rojo Alerta */
-    --border-color: #e2e8f0;
-    --radius: 12px;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s ease;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    
+    /* Colores de Marca Oficiales */
+    --primary-color: #0c2340;    /* Azul Marino Institucional */
+    --accent-color: #eaaa00;     /* Amarillo/Dorado Uniminuto */
+    --accent-hover: #cc9600;
+    
+    --success-color: #15803d;    /* Verde Corporativo para Botón Excel */
+    --danger-color: #b91c1c;     /* Rojo Alerta */
+    --border-color: #cbd5e1;
+    --radius: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+    --transition: all 0.25s ease-in-out;
 }
 
 /* ==========================================================================
@@ -23,13 +27,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
     background-color: var(--bg-main);
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 .container {
@@ -42,32 +46,44 @@ body {
 }
 
 /* ==========================================================================
-   HEADER
+   HEADER CORPORATIVO Y LOGO
    ========================================================================== */
 header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #1a365d 100%);
+    background-color: var(--primary-color);
     color: #ffffff;
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
     text-align: center;
-    border-bottom: 4px solid var(--accent-color);
+    border-bottom: 5px solid var(--accent-color);
     box-shadow: var(--shadow);
 }
 
+.logo-container {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.uniminuto-logo {
+    width: 130px;
+    height: auto;
+}
+
 header h1 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: 0.5px;
     margin-bottom: 0.5rem;
 }
 
 header .subtitle {
-    color: #cbd5e1;
-    font-size: 1.1rem;
-    font-weight: 300;
+    color: #94a3b8;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
 /* ==========================================================================
-   TARJETAS (CARDS) COMPONENTES
+   TARJETAS COMPONENTES
    ========================================================================== */
 .card {
     background-color: var(--bg-card);
@@ -79,23 +95,21 @@ header .subtitle {
 
 .card h2 {
     color: var(--primary-color);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 700;
     margin-bottom: 1.5rem;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--accent-color);
     padding-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
 }
 
 /* ==========================================================================
-   SECCIÓN 1: ACCORDION (MANUAL)
+   SECCIÓN ACCORDION (MANUAL INFORMATIVO)
    ========================================================================== */
 .accordion details {
     background-color: #f8fafc;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    margin-bottom: 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 0.7rem;
     overflow: hidden;
     transition: var(--transition);
 }
@@ -103,12 +117,11 @@ header .subtitle {
 .accordion details[open] {
     border-color: var(--primary-color);
     background-color: #ffffff;
-    box-shadow: 0 4px 6px -1px rgba(12, 35, 64, 0.05);
 }
 
 .accordion summary {
-    padding: 1rem 1.5rem;
-    font-weight: 600;
+    padding: 0.9rem 1.2rem;
+    font-weight: 700;
     color: var(--primary-color);
     cursor: pointer;
     list-style: none;
@@ -121,26 +134,28 @@ header .subtitle {
 }
 
 .accordion summary::after {
-    content: '➔';
+    content: '▼';
+    font-size: 0.75rem;
     position: absolute;
-    right: 1.5rem;
-    transform: rotate(90deg);
+    right: 1.2rem;
     transition: var(--transition);
+    color: var(--text-secondary);
 }
 
 .accordion details[open] summary::after {
-    transform: rotate(270deg);
+    transform: rotate(180deg);
     color: var(--accent-color);
 }
 
 .accordion .content {
-    padding: 1.5rem;
+    padding: 1.2rem;
     border-top: 1px solid var(--border-color);
     color: var(--text-secondary);
+    font-size: 0.95rem;
 }
 
 .accordion .content p {
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .accordion .content p:last-child {
@@ -148,11 +163,12 @@ header .subtitle {
 }
 
 .accordion .warning {
-    background-color: #fffaf0;
+    background-color: #fefce8;
     border-left: 4px solid var(--accent-color);
     padding: 1rem;
-    color: #7c2d12;
+    color: #713f12;
     border-radius: 0 4px 4px 0;
+    margin-top: 1rem;
 }
 
 .accordion ul {
@@ -161,40 +177,40 @@ header .subtitle {
 }
 
 .accordion li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
 }
 
 /* ==========================================================================
-   SECCIÓN 2: FORMULARIO DE REGISTRO
+   FORMULARIO DE REGISTRO
    ========================================================================== */
 .form-instruction {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 0.88rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 0.8rem 1rem;
+    padding: 0.7rem 0.9rem;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 4px;
     background-color: #f8fafc;
     color: var(--text-primary);
-    font-size: 1rem;
+    font-size: 0.95rem;
     transition: var(--transition);
 }
 
@@ -204,20 +220,19 @@ header .subtitle {
     outline: none;
     border-color: var(--primary-color);
     background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(12, 35, 64, 0.1);
 }
 
 /* ==========================================================================
-   BOTONES
+   BOTONES CORPORATIVOS
    ========================================================================== */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 4px;
     border: none;
     cursor: pointer;
     transition: var(--transition);
@@ -230,8 +245,7 @@ header .subtitle {
 }
 
 .btn-primary:hover {
-    background-color: #1a365d;
-    transform: translateY(-1px);
+    background-color: #061224;
 }
 
 .btn-success {
@@ -240,8 +254,7 @@ header .subtitle {
 }
 
 .btn-success:hover {
-    background-color: #059669;
-    transform: translateY(-1px);
+    background-color: #14532d;
 }
 
 .btn-danger-outline {
@@ -263,7 +276,8 @@ header .subtitle {
     color: var(--danger-color);
     border: none;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 0.9rem;
 }
 
 .btn-delete:hover {
@@ -271,7 +285,7 @@ header .subtitle {
 }
 
 /* ==========================================================================
-   SECCIÓN 3: TABLA DE DATOS
+   TABLA DE DATOS
    ========================================================================== */
 .table-header {
     display: flex;
@@ -294,25 +308,25 @@ header .subtitle {
     width: 100%;
     overflow-x: auto;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 th, td {
-    padding: 1rem;
+    padding: 0.85rem 1rem;
     border-bottom: 1px solid var(--border-color);
 }
 
 th {
     background-color: #f8fafc;
     color: var(--primary-color);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 tbody tr:last-child td {
@@ -340,18 +354,18 @@ footer {
     text-align: center;
     padding: 2rem 1rem;
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     border-top: 1px solid var(--border-color);
     margin-top: 3rem;
 }
 
 /* ==========================================================================
-   DISEÑO RESPONSIVO (MEDIANO / GRANDE)
+   DISEÑO RESPONSIVO (PROPORCIONES DE PANTALLA)
    ========================================================================== */
 @media (min-width: 768px) {
     .container {
         grid-template-columns: 1fr 1fr;
-        padding: 3rem 2rem;
+        padding: 2.5rem 2rem;
     }
 
     .table-section {
