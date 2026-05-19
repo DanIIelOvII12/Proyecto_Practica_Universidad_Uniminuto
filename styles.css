@@ -46,41 +46,42 @@ body {
 }
 
 /* ==========================================================================
-   HEADER CORPORATIVO Y LOGO (Optimizado para visualización institucional)
+   HEADER CORPORATIVO Y LOGO (Reducción Máxima Ultra-Compacta)
    ========================================================================== */
 header {
     background-color: var(--primary-color);
     color: #ffffff;
-    padding: 2rem 1rem; 
+    padding: 1rem 1rem; /* Reducido al mínimo para que la barra sea delgada */
     text-align: center;
-    border-bottom: 5px solid var(--accent-color);
+    border-bottom: 4px solid var(--accent-color);
     box-shadow: var(--shadow);
 }
 
 .logo-container {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.4rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px; /* Restringe la altura máxima del área del logo */
+    height: 28px; /* Altura ultra pequeña, similar a un icono de barra de navegación */
 }
 
 .uniminuto-logo {
-    height: 100%; /* El logo se adapta perfectamente a la altura del contenedor */
-    width: auto;  /* Mantiene la proporción geométrica exacta sin deformarse */
+    height: 100%; /* Se acopla estrictamente a los 28px de alto */
+    width: auto;  /* Mantiene la proporción perfecta sin distorsionar */
     max-width: 100%;
+    opacity: 0.9; /* Opacidad sutil para una integración más limpia */
 }
 
 header h1 {
-    font-size: 1.8rem;
+    font-size: 1.3rem; /* Letra más pequeña y sobria para equilibrar el diseño */
     font-weight: 700;
     letter-spacing: 0.5px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
 }
 
 header .subtitle {
     color: #94a3b8;
-    font-size: 1rem;
+    font-size: 0.85rem; /* Subtítulo compacto */
     font-weight: 400;
 }
 
