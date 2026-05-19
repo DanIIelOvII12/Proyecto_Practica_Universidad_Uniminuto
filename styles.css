@@ -48,40 +48,42 @@ body {
 /* ==========================================================================
    HEADER CORPORATIVO Y LOGO (Reducción Máxima Ultra-Compacta)
    ========================================================================== */
+/* ==========================================================================
+   HEADER CORPORATIVO Y LOGO (Equilibrio Visual e Institucional)
+   ========================================================================== */
 header {
     background-color: var(--primary-color);
     color: #ffffff;
-    padding: 1rem 1rem; /* Reducido al mínimo para que la barra sea delgada */
+    padding: 1.8rem 1rem; /* Margen ideal para dar aire sin saturar */
     text-align: center;
-    border-bottom: 4px solid var(--accent-color);
+    border-bottom: 5px solid var(--accent-color);
     box-shadow: var(--shadow);
 }
 
 .logo-container {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 28px; /* Altura ultra pequeña, similar a un icono de barra de navegación */
+    height: 45px; /* Proporción ideal: ni gigante como al inicio, ni invisible */
 }
 
 .uniminuto-logo {
-    height: 100%; /* Se acopla estrictamente a los 28px de alto */
-    width: auto;  /* Mantiene la proporción perfecta sin distorsionar */
+    height: 100%; /* Se ajusta de forma limpia al contenedor de 45px */
+    width: auto;  /* Conserva la geometría y proporciones exactas */
     max-width: 100%;
-    opacity: 0.9; /* Opacidad sutil para una integración más limpia */
 }
 
 header h1 {
-    font-size: 1.3rem; /* Letra más pequeña y sobria para equilibrar el diseño */
+    font-size: 1.6rem; /* Tamaño intermedio y serio para el título principal */
     font-weight: 700;
     letter-spacing: 0.5px;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.3rem;
 }
 
 header .subtitle {
     color: #94a3b8;
-    font-size: 0.85rem; /* Subtítulo compacto */
+    font-size: 0.95rem; /* Subtítulo legible y balanceado */
     font-weight: 400;
 }
 
