@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro – Portal Laboratorios UNIMINUTO</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo-container">
+            <svg class="uniminuto-logo" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+                <rect x="85" y="10" width="12" height="90" fill="#ffffff"/>
+                <rect x="50" y="40" width="80" height="12" fill="#ffffff"/>
+                <text x="45" y="90" font-family="'Arial Black', sans-serif" font-size="42" fill="#eaaa00" font-weight="bold">MD</text>
+                <text x="10" y="120" font-family="'Arial', sans-serif" font-size="16" fill="#ffffff" font-weight="bold" letter-spacing="2">UNIMINUTO</text>
+            </svg>
+        </div>
+        <h1>MANTENIMIENTO DE EQUIPOS Y NIÑERAS</h1>
+        <p class="subtitle">Corporación Universitaria Minuto de Dios · Portal de Práctica Profesional</p>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-container">
+        <a href="index.html"    class="nav-link"><span class="nav-icon svg-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span> Inicio</a>
+        <a href="manual.html"   class="nav-link"><span class="nav-icon svg-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> Manual</a>
+        <a href="registro.html" class="nav-link"><span class="nav-icon svg-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span> Registro</a>
+    </div>
+</nav>
+
+<main>
+    <div class="grid-2">
+
+        <!-- FORMULARIO -->
+        <div class="card">
+            <h2 class="card-title">
+                <span class="card-title-icon svg-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+                Nuevo Registro de Mantenimiento
+            </h2>
+
+            <p class="form-instruction">
+                Complete los datos técnicos del equipo o niñera al cual se realizó el
+                procedimiento de mantenimiento, limpieza o préstamo.
+            </p>
+
+            <form id="maintenanceForm" novalidate>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="serialNumber">Serial del Equipo <span class="required">*</span></label>
+                        <input type="text" id="serialNumber" placeholder="Ej. UNIMINUTO-EQ-001" autocomplete="off">
+                        <span class="field-error" id="err-serial">Ingrese el número de serial.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="equipmentType">Tipo de Equipo <span class="required">*</span></label>
+                        <select id="equipmentType">
+                            <option value="" disabled selected>Seleccione...</option>
+                            <option value="Niñera">Equipo de Niñera</option>
+                            <option value="Préstamo">Equipo de Préstamo Interno</option>
+                            <option value="Bienestar">Área de Bienestar</option>
+                            <option value="Docente">Docente / Materia</option>
+                        </select>
+                        <span class="field-error" id="err-type">Seleccione el tipo de equipo.</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="technician">Técnico / Responsable</label>
+                    <input type="text" id="technician" placeholder="Nombre del practicante o responsable">
+                </div>
+
+                <div class="form-group">
+                    <label for="observations">Observaciones / Detalles Técnicos</label>
+                    <textarea id="observations" rows="4"
+                        placeholder="Describa el estado físico y de software del equipo tratado, fallas encontradas, acciones realizadas, etc."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <span class="btn-icon svg-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span>
+                    Guardar Registro
+                </button>
+            </form>
+        </div>
+
+        <!-- AYUDA CONTEXTUAL -->
+        <div class="card" style="align-self:start;">
+            <h2 class="card-title">
+                <span class="card-title-icon svg-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></span>
+                Guía de Registro
+            </h2>
+
+            <div style="display:flex;flex-direction:column;gap:1rem;font-size:.9rem;color:var(--text-secondary);">
+                <div class="guide-step">
+                    <div class="step-num">1</div>
+                    <div>
+                        <strong style="color:var(--primary);">Serial del equipo</strong><br>
+                        Ingrese el código único del equipo (ej. <code>UNIMINUTO-EQ-042</code> o el número de etiqueta).
+                    </div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-num">2</div>
+                    <div>
+                        <strong style="color:var(--primary);">Tipo de equipo</strong><br>
+                        Indique a qué área o categoría pertenece el equipo tratado.
+                    </div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-num">3</div>
+                    <div>
+                        <strong style="color:var(--primary);">Técnico responsable</strong><br>
+                        Su nombre como practicante o el responsable de jornada. Campo opcional.
+                    </div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-num">4</div>
+                    <div>
+                        <strong style="color:var(--primary);">Observaciones</strong><br>
+                        Estado físico, estado del sistema, fallas encontradas y acciones realizadas.
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:1.5rem;padding:1rem;background:#f0fdf4;border-radius:var(--radius);border-left:3px solid var(--green);">
+                <p style="font-size:.85rem;color:#15803d;font-weight:600;display:flex;align-items:center;gap:.5rem;">
+                    <span class="svg-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+                    Los registros se guardan automáticamente en el navegador y persisten entre sesiones.
+                </p>
+            </div>
+        </div>
+
+        <!-- TABLA DE REGISTROS -->
+        <div class="card col-full" id="exportar">
+            <div class="table-header-row">
+                <h2 class="card-title" style="margin-bottom:0;border:none;padding:0;">
+                    <span class="card-title-icon svg-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></span>
+                    Registros de la Sesión
+                    <span id="recordsCountBadge" class="count-badge">0</span>
+                </h2>
+                <button id="exportBtn" class="btn btn-success" disabled>
+                    <span class="btn-icon svg-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+                    Exportar Excel
+                </button>
+            </div>
+
+            <!-- FILTROS -->
+            <div class="filter-bar">
+                <input type="search" id="searchInput" placeholder="Buscar por serial u observaciones…">
+                <select id="filterType">
+                    <option value="">Todos los tipos</option>
+                    <option value="Niñera">Niñera</option>
+                    <option value="Préstamo">Préstamo</option>
+                    <option value="Bienestar">Bienestar</option>
+                    <option value="Docente">Docente</option>
+                </select>
+                <span class="records-count" id="filteredCount"></span>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:160px;">Fecha/Hora</th>
+                            <th>Serial</th>
+                            <th style="width:140px;">Tipo</th>
+                            <th>Técnico</th>
+                            <th>Observaciones</th>
+                            <th style="width:80px;text-align:center;">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+
+            <div class="table-actions-row">
+                <button id="clearAllBtn" class="btn btn-danger-ghost">
+                    <span class="btn-icon svg-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></span>
+                    Limpiar historial
+                </button>
+                <button id="printBtn" class="btn btn-ghost">
+                    <span class="btn-icon svg-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></span>
+                    Imprimir
+                </button>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 · Sistema de Gestión de Laboratorios · Corporación Universitaria Minuto de Dios – UNIMINUTO</p>
+</footer>
+
+<script src="shared.js"></script>
+<script src="registro.js"></script>
+
+<style>
+/* SVG icon sizing */
+.svg-icon svg { width: 1.15em; height: 1.15em; display: inline-block; vertical-align: middle; }
+.nav-icon.svg-icon svg { width: 1rem; height: 1rem; }
+.card-title-icon.svg-icon { margin-right: .35rem; }
+.card-title-icon.svg-icon svg { width: 1.1rem; height: 1.1rem; vertical-align: -0.15em; }
+.btn-icon.svg-icon { margin-right: .4rem; }
+.btn-icon.svg-icon svg { width: 1rem; height: 1rem; vertical-align: -0.1em; }
+
+.table-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    padding: 0.1rem 0.6rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.guide-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+}
+
+.step-num {
+    width: 26px; height: 26px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-top: .05rem;
+}
+
+code {
+    background: #f1f5f9;
+    color: var(--primary);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: monospace;
+}
+</style>
+</body>
+</html>
