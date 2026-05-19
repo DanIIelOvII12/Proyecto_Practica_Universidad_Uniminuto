@@ -1,0 +1,366 @@
+/* ==========================================================================
+   VARIABLES DE DISEÑO (Colores y Estilos Globales)
+   ========================================================================== */
+:root {
+    --bg-main: #f4f6f9;
+    --bg-card: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --primary-color: #0c2340; /* Azul Institucional Oscuro */
+    --accent-color: #eaaa00;  /* Dorado Sutil */
+    --success-color: #10b981; /* Verde Esmeralda para Excel */
+    --danger-color: #ef4444;  /* Rojo Alerta */
+    --border-color: #e2e8f0;
+    --radius: 12px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   ESTILOS GENERALES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1a365d 100%);
+    color: #ffffff;
+    padding: 3rem 1rem;
+    text-align: center;
+    border-bottom: 4px solid var(--accent-color);
+    box-shadow: var(--shadow);
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+header .subtitle {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   TARJETAS (CARDS) COMPONENTES
+   ========================================================================== */
+.card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.card h2 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ==========================================================================
+   SECCIÓN 1: ACCORDION (MANUAL)
+   ========================================================================== */
+.accordion details {
+    background-color: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.accordion details[open] {
+    border-color: var(--primary-color);
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(12, 35, 64, 0.05);
+}
+
+.accordion summary {
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    transition: var(--transition);
+}
+
+.accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+.accordion summary::after {
+    content: '➔';
+    position: absolute;
+    right: 1.5rem;
+    transform: rotate(90deg);
+    transition: var(--transition);
+}
+
+.accordion details[open] summary::after {
+    transform: rotate(270deg);
+    color: var(--accent-color);
+}
+
+.accordion .content {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.accordion .content p {
+    margin-bottom: 1rem;
+}
+
+.accordion .content p:last-child {
+    margin-bottom: 0;
+}
+
+.accordion .warning {
+    background-color: #fffaf0;
+    border-left: 4px solid var(--accent-color);
+    padding: 1rem;
+    color: #7c2d12;
+    border-radius: 0 4px 4px 0;
+}
+
+.accordion ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.accordion li {
+    margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   SECCIÓN 2: FORMULARIO DE REGISTRO
+   ========================================================================== */
+.form-instruction {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #f8fafc;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(12, 35, 64, 0.1);
+}
+
+/* ==========================================================================
+   BOTONES
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #1a365d;
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: #ffffff;
+}
+
+.btn-success:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+}
+
+.btn-danger-outline {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--danger-color);
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    width: auto;
+}
+
+.btn-danger-outline:hover {
+    background-color: #fef2f2;
+    border-color: var(--danger-color);
+}
+
+.btn-delete {
+    background-color: transparent;
+    color: var(--danger-color);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-delete:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   SECCIÓN 3: TABLA DE DATOS
+   ========================================================================== */
+.table-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.table-header h2 {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.table-header .btn {
+    width: auto;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+th, td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background-color: #f8fafc;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.table-actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 3rem;
+}
+
+/* ==========================================================================
+   DISEÑO RESPONSIVO (MEDIANO / GRANDE)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+        padding: 3rem 2rem;
+    }
+
+    .table-section {
+        grid-column: span 2;
+    }
+
+    .table-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

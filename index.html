@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Gestión - Laboratorios UNIMINUTO</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1>SITIO WEB - MANTENIMIENTO DE EQUIPOS Y NIÑERAS</h1>
+            <p class="subtitle">Corporación Universitaria Minuto de Dios - Portal de Práctica Profesional</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="card manual-section">
+            <h2>📘 Manual de Procedimientos y Lineamientos</h2>
+            
+            <div class="accordion">
+                <details open>
+                    <summary>1. ¿Qué son las niñeras?</summary>
+                    <div class="content">
+                        <p>Las niñeras de cómputo son carros especializados los cuales permiten a los profesores de distintas áreas el poder utilizar equipos portátiles los cuales brindan acceso a las ramas de internet en base a la red de dominio de la universidad.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>2. ¿Cómo se utilizan las niñeras?</summary>
+                    <div class="content">
+                        <p>Cada niñera es utilizada en base a la clase que el profesor solicite. Si el profe desea algún programa en específico deberá solicitarlo directamente con los responsables de jornada o directamente con la jefa de los laboratorios de cómputo.</p>
+                        <p>Cada niñera dispone de <strong>31 equipos con su cargador</strong>, el carro de la niñera contiene dos extensiones de cable en cada lado tanto derecho como izquierdo que permite cargar los equipos completamente.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>3. ¿Quién es responsable de las niñeras?</summary>
+                    <div class="content">
+                        <p>Tanto el practicante como los responsables de jornada son los encargados tanto de los laboratorios de cómputo, como de las niñeras y los respectivos equipos de préstamo dentro de la oficina.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>4. ¿Cómo se organiza una niñera?</summary>
+                    <div class="content">
+                        <p>Cada niñera contiene bandejas de hierro en las cuales el equipo portátil debe ser colocado con su enchufe de cargador visible. Los cargadores deben estar envueltos de manera correcta tal y como indique el responsable de jornada y estar conectados a los equipos portátiles.</p>
+                        <p class="warning"><strong>Nota crítica:</strong> Las niñeras siempre deben entregarse de manera ordenada desde la oficina y de igual manera deben ser devueltas en el mismo estado. Si el docente causa cualquier daño a la niñera, a un equipo portátil o entrega la niñera en mal estado, no se recibirá y se notificará inmediatamente a la jefa de laboratorios.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>5. Gestión, Limpieza y Soporte de Equipos</summary>
+                    <div class="content">
+                        <h3>Entrega y Recepción:</h3>
+                        <p>Cada equipo se entrega con cargador y cuenta con un número asignado el cual debe ser diligenciado en el sistema. Si presenta daños no se recibe y se reporta a la jefa de laboratorios.</p>
+                        
+                        <h3>Protocolo de Limpieza (1 vez por semana sin excepción):</h3>
+                        <ul>
+                            <li><strong>Limpiador de pantalla Líquido:</strong> Únicamente para pantallas.</li>
+                            <li><strong>Trapos secos:</strong> Para la limpieza de todo el equipo.</li>
+                            <li><strong>Espuma de limpieza especializada:</strong> Se aplica directamente al trapo para la limpieza del teclado y partes exteriores (no incluye pantalla).</li>
+                        </ul>
+
+                        <h3>Fallas o Daños:</h3>
+                        <p>Si un equipo presenta algún daño de repente, inmediatamente se debe hacer el reporte con el responsable de jornada y con la jefa de laboratorio para aplicar las medidas correspondientes de garantía o soporte técnico por parte de <strong>Colsoft</strong>.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section class="card form-section">
+            <h2>🛠️ Registro de Mantenimiento de Equipos</h2>
+            <p class="form-instruction">Digita los datos del equipo que recibió mantenimiento técnico o limpieza semanal.</p>
+            
+            <form id="maintenanceForm">
+                <div class="form-group">
+                    <label for="serialNumber">Número de Serial / Identificador del Equipo:</label>
+                    <input type="text" id="serialNumber" required placeholder="Ej. UNIMINUTO-EQ-045">
+                </div>
+
+                <div class="form-group">
+                    <label for="equipmentType">Área / Tipo de Equipo:</label>
+                    <select id="equipmentType" required>
+                        <option value="" disabled selected>Selecciona una opción...</option>
+                        <option value="Niñera">Equipo de Niñera</option>
+                        <option value="Préstamo">Equipo de Préstamo Interno</option>
+                        <option value="Bienestar">Área de Bienestar</option>
+                        <option value="Docente">Docente (Materia Específica)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="observations">Detalles / Estado del Mantenimiento:</label>
+                    <textarea id="observations" rows="3" placeholder="Ej. Limpieza semanal completa realizada. Equipo en óptimas condiciones."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Guardar Registro</button>
+            </form>
+        </section>
+
+        <section class="card table-section">
+            <div class="table-header">
+                <h2>📋 Registros Digitados en esta Sesión</h2>
+                <button id="exportBtn" class="btn btn-success">📊 Generar y Descargar Excel</button>
+            </div>
+            
+            <div class="table-responsive">
+                <table id="recordsTable">
+                    <thead>
+                        <tr>
+                            <th>Fecha/Hora</th>
+                            <th>Número de Serial</th>
+                            <th>Tipo / Área de Equipo</th>
+                            <th>Observaciones</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr id="emptyRow">
+                            <td colspan="5" class="text-center">No hay registros digitados en esta sesión.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-actions">
+                <button id="clearAllBtn" class="btn btn-danger-outline">Limpiar todo el historial</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Sistema Desarrollado para Práctica Profesional | UNIMINUTO</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
