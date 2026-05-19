@@ -46,41 +46,46 @@ body {
 }
 
 /* ==========================================================================
-   HEADER CORPORATIVO Y LOGO (Proporción y Visibilidad Óptima)
+   HEADER CORPORATIVO Y LOGO (Optimizado para Legibilidad)
    ========================================================================== */
 header {
     background-color: var(--primary-color);
     color: #ffffff;
-    padding: 1.5rem 1rem; /* Ajuste de aire intermedio */
+    padding: 1.8rem 1rem; /* Un poco más de aire vertical para equilibrar */
     text-align: center;
     border-bottom: 5px solid var(--accent-color);
     box-shadow: var(--shadow);
 }
 
 .logo-container {
-    margin-bottom: 0.6rem;
+    margin-bottom: 1rem; /* Más separación con el título principal */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 38px; /* Altura equilibrada para garantizar legibilidad */
+    /* Cambiamos la altura fija por una min/max para dar flexibilidad al logo */
+    min-height: 50px; 
+    height: auto; 
 }
 
 .uniminuto-logo {
-    height: 100%; /* Se adapta perfectamente a la nueva escala de 38px */
-    width: auto;  /* Mantiene la proporción geométrica original */
-    max-width: 100%;
+    /* Permitimos que el logo crezca un poco más si es muy horizontal */
+    height: auto;
+    max-height: 60px; /* Límite superior seguro para que no se vea gigante */
+    width: auto;      /* Mantiene la proporción geométrica original */
+    max-width: 90%;   /* Evita que toque los bordes en pantallas móviles */
+    object-fit: contain; /* Asegura que la imagen no se distorsione */
 }
 
 header h1 {
-    font-size: 1.5rem; /* Tamaño de tipografía acorde al peso visual del logo */
+    font-size: 1.6rem; /* Ajustado ligeramente para balancear el nuevo tamaño del logo */
     font-weight: 700;
     letter-spacing: 0.5px;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.35rem;
 }
 
 header .subtitle {
     color: #94a3b8;
-    font-size: 0.9rem; /* Subtítulo estilizado */
+    font-size: 0.95rem; 
     font-weight: 400;
 }
 /* ==========================================================================
