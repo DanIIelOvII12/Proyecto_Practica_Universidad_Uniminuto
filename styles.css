@@ -48,44 +48,50 @@ body {
 /* ==========================================================================
    HEADER CORPORATIVO Y LOGO (Optimizado para Legibilidad)
    ========================================================================== */
+/* ==========================================================================
+   HEADER CORPORATIVO Y LOGO (Diseño Impactante - Logo Ampliado)
+   ========================================================================== */
 header {
     background-color: var(--primary-color);
     color: #ffffff;
-    padding: 1.8rem 1rem; /* Un poco más de aire vertical para equilibrar */
+    /* Aumentamos significativamente el padding vertical para acomodar el logo grande */
+    padding: 2.5rem 1rem; 
     text-align: center;
     border-bottom: 5px solid var(--accent-color);
     box-shadow: var(--shadow);
 }
 
 .logo-container {
-    margin-bottom: 1rem; /* Más separación con el título principal */
+    /* Más espacio de separación con el texto de abajo */
+    margin-bottom: 1.5rem; 
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Cambiamos la altura fija por una min/max para dar flexibilidad al logo */
-    min-height: 50px; 
+    /* Eliminamos cualquier restricción de altura fija en el contenedor */
     height: auto; 
+    width: 100%;
 }
 
 .uniminuto-logo {
-    /* Permitimos que el logo crezca un poco más si es muy horizontal */
+    /* ESTA ES LA CLAVE: Aumentamos la altura máxima considerablemente */
     height: auto;
-    max-height: 60px; /* Límite superior seguro para que no se vea gigante */
-    width: auto;      /* Mantiene la proporción geométrica original */
-    max-width: 90%;   /* Evita que toque los bordes en pantallas móviles */
-    object-fit: contain; /* Asegura que la imagen no se distorsione */
+    max-height: 110px; /* Tamaño mucho más visible, ideal para logos horizontales detallados */
+    width: auto;       /* Mantiene la proporción geométrica original */
+    max-width: 95%;    /* Casi todo el ancho disponible para máximo impacto */
+    object-fit: contain; /* Garantiza cero distorsión */
+    display: block;    /* Ayuda a centrar y manejar márgenes */
 }
 
 header h1 {
-    font-size: 1.6rem; /* Ajustado ligeramente para balancear el nuevo tamaño del logo */
+    font-size: 1.8rem; /* Un poco más de peso para que no se pierda ante el logo */
     font-weight: 700;
     letter-spacing: 0.5px;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.5rem;
 }
 
 header .subtitle {
     color: #94a3b8;
-    font-size: 0.95rem; 
+    font-size: 1rem; /* Ligeramente mayor legibilidad */
     font-weight: 400;
 }
 /* ==========================================================================
