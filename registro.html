@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro – Portal Laboratorios UNIMINUTO</title>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo-container">
+            <svg class="uniminuto-logo" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+                <rect x="85" y="10" width="12" height="90" fill="#ffffff"/>
+                <rect x="50" y="40" width="80" height="12" fill="#ffffff"/>
+                <text x="45" y="90" font-family="'Arial Black', sans-serif" font-size="42" fill="#eaaa00" font-weight="bold">MD</text>
+                <text x="10" y="120" font-family="'Arial', sans-serif" font-size="16" fill="#ffffff" font-weight="bold" letter-spacing="2">UNIMINUTO</text>
+            </svg>
+        </div>
+        <h1>MANTENIMIENTO DE EQUIPOS Y NIÑERAS</h1>
+        <p class="subtitle">Corporación Universitaria Minuto de Dios · Portal de Práctica Profesional</p>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-container">
+        <a href="index.html"    class="nav-link"><span class="nav-icon svg-icon" data-icon="home"></span> Inicio</a>
+        <a href="manual.html"   class="nav-link"><span class="nav-icon svg-icon" data-icon="book"></span> Manual</a>
+        <a href="registro.html" class="nav-link active"><span class="nav-icon svg-icon" data-icon="edit"></span> Registro</a>
+    </div>
+</nav>
+
+<main>
+    <div class="grid-2">
+        <div class="card">
+            <h2 class="card-title">
+                <span class="card-title-icon svg-icon" data-icon="plus-circle"></span>
+                Nuevo Registro
+            </h2>
+            <form id="recordForm" class="form-container">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="recordDate">Fecha y Hora <span style="color:var(--red);">*</span></label>
+                        <input type="datetime-local" id="recordDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serial">Serial / ID del Equipo <span style="color:var(--red);">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon svg-icon" data-icon="hash"></span>
+                            <input type="text" id="serial" placeholder="Ej: LENOVO-001" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="equipmentType">Categoría <span style="color:var(--red);">*</span></label>
+                        <select id="equipmentType" required>
+                            <option value="" disabled selected>Seleccione una categoría...</option>
+                            <option value="Portátil">Portátil</option>
+                            <option value="Niñera">Niñera</option>
+                            <option value="Audiovisuales">Audiovisuales</option>
+                            <option value="Educación ambiental">Educación ambiental</option>
+                            <option value="Educación física">Educación física</option>
+                            <option value="Eventos">Eventos</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="technician">Practicante o auxiliar de laboratorio responsable <span style="color:var(--red);">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon svg-icon" data-icon="user"></span>
+                            <input type="text" id="technician" placeholder="Nombre del responsable..." required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="observations">Observaciones / Detalles del Mantenimiento</label>
+                    <textarea id="observations" rows="3" placeholder="Detalle limpieza, fallas, componentes revisados..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="btnReset">
+                        <span class="btn-icon svg-icon" data-icon="refresh"></span> Limpiar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-icon svg-icon" data-icon="save"></span> Guardar Registro
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card col-full">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
+                <h2 class="card-title" style="margin:0;">
+                    <span class="card-title-icon svg-icon" data-icon="list"></span>
+                    Historial de Movimientos
+                </h2>
+                <button type="button" class="btn btn-export" id="btnExport">
+                    <span class="btn-icon svg-icon" data-icon="download"></span> Exportar Excel
+                </button>
+            </div>
+
+            <div class="filter-bar">
+                <div class="search-wrap">
+                    <span class="search-icon svg-icon" data-icon="search"></span>
+                    <input type="text" id="searchInput" placeholder="Buscar por serial, responsable u observaciones...">
+                </div>
+                <select id="filterType">
+                    <option value="ALL">Todas las categorías</option>
+                    <option value="Portátil">Portátil</option>
+                    <option value="Niñera">Niñera</option>
+                    <option value="Audiovisuales">Audiovisuales</option>
+                    <option value="Educación ambiental">Educación ambiental</option>
+                    <option value="Educación física">Educación física</option>
+                    <option value="Eventos">Eventos</option>
+                </select>
+                <span class="records-count" id="recordsCount">0 registros</span>
+            </div>
+
+            <div class="table-container">
+                <table id="recordsTable">
+                    <thead>
+                        <tr>
+                            <th>Fecha y Hora</th>
+                            <th>Serial / ID Equipo</th>
+                            <th>Categoría</th>
+                            <th>Responsable</th>
+                            <th>Observaciones / Novedad</th>
+                            <th class="text-center" style="width: 90px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+                
+                <div id="emptyState" class="empty-state" style="display:none;">
+                    <span class="empty-icon svg-icon" data-icon="inbox"></span>
+                    <p>No se encontraron registros que coincidan con la búsqueda.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 · Sistema de Gestión de Laboratorios · Corporación Universitaria Minuto de Dios – UNIMINUTO</p>
+</footer>
+
+<div id="toast" class="toast">Mensaje</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="icons.js"></script>
+<script src="shared.js"></script>
+<script src="registro.js"></script>
+</body>
+</html>
